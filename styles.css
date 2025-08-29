@@ -1,0 +1,202 @@
+/* styles.css
+   Estilos globais do site — somente CSS puro.
+*/
+
+/* Paleta, variáveis e ajustes globais */
+:root{
+  --bg: #0f172a;
+  --card: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #22d3ee;
+  --accent2: #a78bfa;
+  --border: #1f2937;
+  --radius: 14px;
+}
+
+/* Box model e fontes */
+* { box-sizing: border-box; }
+html { 
+  scroll-behavior: smooth; 
+  height: 100%;
+}
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  min-height: 100%; /* força ocupar a tela toda */
+  background:
+    radial-gradient(1200px 600px at 20% -10%, #1f2937 0%, transparent 50%),
+    var(--bg); /* azul sólido de base */
+  background-attachment: fixed;
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Cabeçalho fixo no topo — menu visível em todas as páginas */
+header{
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(17,24,39,0.85); /* leve blur / transparência */
+  backdrop-filter: saturate(150%) blur(6px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text);
+}
+.logo{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent); /* cor de fallback */
+  background-image: url("logo.jpg");
+  background-size: cover;  
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 6px 18px rgba(34,211,238,0.12);
+}
+
+/* Navegação — simples e responsiva */
+nav ul{
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav a{
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: all 160ms ease;
+  font-weight: 600;
+  font-size: 14px;
+}
+nav a[aria-current="page"],
+nav a:hover{
+  color: var(--accent);
+  border-color: rgba(34,211,238,0.18);
+  background: rgba(34,211,238,0.03);
+}
+
+/* Conteúdo principal */
+main{ max-width: 1000px; margin: 28px auto; padding: 0 20px; }
+.section{
+  background: linear-gradient(180deg, rgba(167,139,250,0.03), transparent 60%),
+              linear-gradient(180deg, rgba(34,211,238,0.03), transparent 30%),
+              var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+h1{ margin: 0 0 10px; font-size: clamp(26px, 3vw, 36px); line-height: 1.15; }
+h2{ color: var(--accent); margin: 0 0 8px; font-size: clamp(18px, 2.2vw, 24px); }
+p { margin: 8px 0; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Grid e cartões */
+.grid{
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 12px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(15,23,42,0.5);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+.card-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-button p:last-child {
+  margin-top: auto;
+}
+.card h3{ margin: 0 0 6px; font-size: 16px; }
+
+/* Badge pequeno de seção */
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px dashed rgba(167,139,250,0.15);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Formulário de contato*/
+form { display: grid; gap: 12px; margin-top: 6px; }
+label{ display:block; font-weight: 600; margin-bottom: 6px; }
+input, textarea{
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+input:focus, textarea:focus{
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(34,211,238,0.06);
+}
+textarea{ min-height: 140px; resize: vertical; }
+
+/* Botão estilizado (ainda sem JS) */
+.button{
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  color: #071026;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none;
+  cursor: default; /* indicador visual; sem comportamento JS */
+  box-shadow: 0 6px 18px rgba(34,211,238,0.18);
+}
+
+/* Rodapé */
+footer{
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px 40px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Pequena responsividade */
+@media (max-width: 560px){
+  .header-inner{ padding: 10px 14px; gap:8px; }
+  nav a{ padding: 8px 8px; font-size: 13px; }
+  .logo{ width:30px; height:30px; }
+}
