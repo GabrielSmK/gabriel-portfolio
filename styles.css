@@ -123,16 +123,23 @@ p { margin: 8px 0; color: var(--text); }
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: rgba(15,23,42,0.5);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 14px;
+  min-height: 100px;
 }
 .card-button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.card-info {
+  min-height: unset;
+  display: block;
+  flex-direction: unset;
+  justify-content: unset;
 }
 
 .card-button p:last-child {
